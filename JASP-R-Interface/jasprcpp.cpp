@@ -143,7 +143,7 @@ const char* STDCALL jaspRCPP_run(const char* name, const char* title, bool requi
 #ifndef __WIN32__
 	rinside_consoleLog->clearConsoleBuffer();
 #endif
-	
+
 	if(usesJaspResults)
 	{
 		///Some stuff for jaspResults etc
@@ -259,7 +259,7 @@ const char* STDCALL jaspRCPP_saveImage(const char *name, const char *type, const
 }
 
 const char* STDCALL jaspRCPP_editImage(const char *name, const char *type, const int height, const int width, const int ppi) {
-	
+
 	RInside &rInside = rinside->instance();
 
 	rInside["plotName"] = name;
