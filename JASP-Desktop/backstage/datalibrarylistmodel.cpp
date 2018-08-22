@@ -1,14 +1,13 @@
 #include "datalibrarylistmodel.h"
 #include "fsentrywidget.h"
-#include <QtDebug>
 #include <QFileInfo>
 #include <QDir>
 
 DataLibraryListModel::DataLibraryListModel(QObject *parent)
 	: QAbstractListModel(parent)
 {
-	_fsbmExampleModel = new FSBMExamples(this,  FSBMExamples::rootelementname );
-	_fsbmExampleModel->refresh();
+	_fsbmDataLibrary = new FSBMDataLibrary(this,  FSBMDataLibrary::rootelementname );
+	_fsbmDataLibrary->refresh();
 	_iconsources = FSEntryWidget::sourcesIcons();
 
 	connect(this, SIGNAL(openFile(FileEvent *)), parent, SLOT(openFile(FileEvent *)));
@@ -23,7 +22,7 @@ int DataLibraryListModel::rowCount(const QModelIndex &parent) const
 	if (parent.isValid())
 		return 0;
 
-	return _fsbmExampleModel->entries().count();
+	return _fsbmDataLibrary->entries().count();
 
 }
 
@@ -33,7 +32,7 @@ QVariant DataLibraryListModel::data(const QModelIndex &index, int role) const
 		return QVariant();
 
 	//Set and fill the FileSystemEntryList
-	FSBMExamples::FileSystemExtendedEntryList fileEntryList = _fsbmExampleModel->entries();
+	FSBMDataLibrary::FileSystemExtendedEntryList fileEntryList = _fsbmDataLibrary->entries();
 
 	//Get the FileEntry
 	ExtendedFSEntry item = fileEntryList[index.row()];
@@ -68,7 +67,7 @@ QVariant DataLibraryListModel::data(const QModelIndex &index, int role) const
 bool DataLibraryListModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
 	//Get the FileSystemEntryList
-	FSBMExamples::FileSystemExtendedEntryList fileEntryList = _fsbmExampleModel->entries();
+	FSBMDataLibrary::FileSystemExtendedEntryList fileEntryList = _fsbmDataLibrary->entries();
 
 	if (index.row() < 0 || index.row() >= fileEntryList.count())
         return false;
@@ -130,7 +129,7 @@ QHash<int, QByteArray> DataLibraryListModel::roleNames() const
 	return names;
 }
 
-void DataLibraryListModel::setDataLibraryBreadCrumbsModel(DataLibraryBreadCrumbsModel *dataLibraryBreadCrumbsModel)
+void DataLibraryListModel::setDataLibraryBreadCrumbsModel(DataLibraryBreadCrumbsListModel *dataLibraryBreadCrumbsModel)
 {
 	_dataLibraryBreadCrumbsModel = dataLibraryBreadCrumbsModel;
 }
@@ -140,8 +139,8 @@ void DataLibraryListModel::changePath(const QString &name, const QString &path)
 	beginResetModel();	
 	_dataLibraryBreadCrumbsModel->appendCrumb(name , path);
 	
-	_fsbmExampleModel->setPath(path);
-	_fsbmExampleModel->refresh();
+	_fsbmDataLibrary->setPath(path);
+	_fsbmDataLibrary->refresh();
 
 	endResetModel();
 }
@@ -154,8 +153,8 @@ void DataLibraryListModel::changePath(const int &index)
 	
 	path = _dataLibraryBreadCrumbsModel->switchCrumb(index);
 	
-	_fsbmExampleModel->setPath(path);
-	_fsbmExampleModel->refresh();
+	_fsbmDataLibrary->setPath(path);
+	_fsbmDataLibrary->refresh();
 	
 	endResetModel();
 	

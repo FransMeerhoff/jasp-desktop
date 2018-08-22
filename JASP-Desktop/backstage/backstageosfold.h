@@ -16,29 +16,26 @@
 // <http://www.gnu.org/licenses/>.
 //
 
-#ifndef BACKSTAGEOSF_H
-#define BACKSTAGEOSF_H
+#ifndef BACKSTAGEOSFOLD_H
+#define BACKSTAGEOSFOLD_H
 
 #include "backstagepage.h"
-#include "osflistmodel.h"
+
+#include "fsbmosf.h"
 #include "fsbrowser.h"
+#include "breadcrumbs.h"
 
-#include <QQmlContext>
+#include <QLabel>
+#include <QCursor>
+#include <QLineEdit>
 
-namespace Ui {
-class BackstageForm;
-}
-
-class BackstageOSF: public BackstagePage
+class BackstageOSFOld : public BackstagePage
 {
 	Q_OBJECT
-	Q_PROPERTY(bool loggedin READ loggedin WRITE setLoggedin NOTIFY loggedinChanged)
 	
 public:
-	explicit BackstageOSF(QWidget *parent = nullptr);
-	bool loggedin();
-	void setLoggedin(const bool loggedin);
-	
+	explicit BackstageOSFOld(QWidget *parent = 0);
+
 	void setOnlineDataManager(OnlineDataManager *odm);
 	void attemptToConnect();
 	void setCurrentFileName(QString currentFileName);
@@ -47,8 +44,7 @@ public:
 signals:
 	//void dataSetOpened(QString path); dead code
 	void newFolderRequested(QString folderName);
-	void loggedinChanged();
-	
+
 private slots:
 	void notifyDataSetSelected(QString path);
 	void notifyDataSetOpened(QString path);
@@ -60,24 +56,36 @@ private slots:
 	void newFolderCreated();
 	void newFolderClicked();
 	void authenticatedHandler();
-	void resetOSFListModel();
-
-public slots:
 	void logoutClicked();
-	
+
 private:
-	
+
 	bool checkEntryName(QString name, QString entryTitle, bool allowFullStop);
-	
-	OnlineDataManager *_odm;	
-	OSFListModel *_osfListModel;
+
+	OnlineDataManager *_odm;
+	BreadCrumbs *_breadCrumbs;
 	FSBMOSF *_model;
-	FSBrowser *_fsBrowser;	
-	QString _currentFileName;	
-	Ui::BackstageForm *ui;
-	bool _mLoggedin;
-		
+	FSBrowser *_fsBrowser;
+	QToolButton *_logoutButton;
+	QWidget *_fileNameContainer;
+	QLineEdit *_fileNameTextBox;
+	QPushButton *_saveButton;
+	QToolButton *_newFolderButton;
+	QString _currentFileName;
+
+	class HyperlinkLabel : public QLabel
+	{
+	public:
+		HyperlinkLabel(QWidget *parent)
+			: QLabel(parent)
+		{
+			setOpenExternalLinks(true);
+			setCursor(Qt::PointingHandCursor);
+			setTextFormat(Qt::RichText);
+			setStyleSheet("color : blue ; text-decoration: underline ;");
+		}
+	};
+
 };
 
-
-#endif // BACKSTAGEOSF_H
+#endif // BACKSTAGEOSFOLD_H

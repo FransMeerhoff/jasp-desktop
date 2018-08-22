@@ -1,9 +1,9 @@
-#ifndef DATALIBRARYBREADCRUMBSMODEL_H
-#define DATALIBRARYBREADCRUMBSMODEL_H
+#ifndef DATALIBRARYBREADCRUMBSLISTMODEL_H
+#define DATALIBRARYBREADCRUMBSLISTMODEL_H
 
 #include <QAbstractListModel>
 
-class DataLibraryBreadCrumbsModel : public QAbstractListModel
+class DataLibraryBreadCrumbsListModel : public QAbstractListModel
 {
 	Q_OBJECT
 	
@@ -13,7 +13,7 @@ public:
         NameRole = Qt::UserRole
     };
 	
-	explicit DataLibraryBreadCrumbsModel(QObject *parent = nullptr);
+	explicit DataLibraryBreadCrumbsListModel(QObject *parent = nullptr);
 	void setSeperator(const QChar &separator);
 		
 	// Basic functionality:
@@ -41,4 +41,4 @@ private:
 	QChar _separator = QChar('/');	
 };
 
-#endif // DATALIBRARYBREADCRUMBSMODEL_H
+#endif // DATALIBRARYBREADCRUMBSLISTMODEL_H
