@@ -1,7 +1,7 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQml.Models 2.2
-import JASPTheme 1.0
+import JASP.Theme 1.0
 
 JASPControl
 {
@@ -12,8 +12,8 @@ JASPControl
     implicitHeight: 200
     
     property var model
-    property var comboModel: []
-    property var columns: []
+    property var columnNames: []
+    property list<TableViewColumn> columns
     property string title
     property var syncModels
     property var components: []
@@ -79,15 +79,15 @@ JASPControl
                 Component.onCompleted: {
                     var previousColumn = firstColumn;
                     console.log("Text is: " + firstColumn.text)
-                    for (var i = 0; i < columns.length; i++)
-                    {
+                    var length = columns.length
+                    for (var i = 0; i < length; i++) {
                         var newControl = components[i].createObject(itemRectangle);
                         newControl.isBound = false;
                         if (newControl.controlType === "ComboBox") {
-                            newControl.model = comboModel;
-                            newControl.control.activated.connect(function(activatedIndex) { 
-                                comboBoxActivated( newControl.parent.row, comboModel[activatedIndex]); 
-                            });
+                            newControl.model = columns[i].model;
+                            //newControl.control.activated.connect(function(activatedIndex) { 
+                            //    comboBoxActivated( newControl.parent.row, comboModel[activatedIndex]); 
+                            //});
                         }
                         newControl.anchors.left = previousColumn.right
                         newControl.anchors.top = previousColumn.top
@@ -102,10 +102,10 @@ JASPControl
     }
     
     Component.onCompleted: {
-        for (var i = 0; i < columns.length; i++)
-        {
-            var control = columns[i];
-            var component = Qt.createComponent(columns[i] + ".qml");
+        var length = columns.length
+        for (var i = 0; i < length; i++) {
+            var columnType = columns[i].type
+            var component = Qt.createComponent(columnType + ".qml");
             components.push(component);
         }
     }

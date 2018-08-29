@@ -17,7 +17,7 @@
 //
 import QtQuick 2.11
 import QtQuick.Layouts 1.3
-import JASPTheme 1.0
+import JASP.Theme 1.0
 
 FocusScope {
     id: expanderWrapper
@@ -41,7 +41,7 @@ FocusScope {
 
     clip: true
     Behavior on implicitHeight {
-        PropertyAnimation {duration: 500; easing.type: Easing.OutQuad; easing.amplitude: 3}
+        PropertyAnimation {duration: 250; easing.type: Easing.OutQuad; easing.amplitude: 3}
     }
   
 

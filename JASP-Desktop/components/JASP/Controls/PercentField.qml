@@ -17,28 +17,21 @@
 //
 
 import QtQuick 2.11
-import JASPTheme 1.0
+import JASP.Controls 1.0
+import JASP.Theme 1.0
 
-FocusScope {
+TextField {
+    id: textField
     property int defaultValue: 50
     property bool showPercent: true
     property bool with1Decimal: false
-    property alias name : textField.name
-    property alias control: textField
-    property alias label: textField.beforeLabel
-    
-    implicitWidth: textField.implicitWidth
-    implicitHeight: textField.implicitHeight
     
     property var intVal: IntValidator {bottom: 0; top: 100}
     property var doubleVal: DoubleValidator {bottom: 0; top: 100; decimals: 1}
     
-    TextField {
-        id: textField
-        inputType: "percent"
-        control.width: Theme.font.pixelSize * (with1Decimal ? 3 : 2)
-        validator: with1Decimal ? doubleVal : intVal
-        text: Number.parseInt(defaultValue);
-        afterLabel.text: showPercent ? "%" : ""
-    }
+    inputType: "percent"
+    control.width: Theme.font.pixelSize * (with1Decimal ? 3 : 2)
+    validator: with1Decimal ? doubleVal : intVal
+    text: Number.parseInt(defaultValue);
+    afterLabel.text: showPercent ? "%" : ""
 }
