@@ -92,7 +92,8 @@ DISTFILES += \
     $$PWD/JASPControls/VariablesForm.qml \
     $$PWD/JASPControls/VariablesList.qml \
     $$PWD/modules/ModuleInstaller.qml \
-    $$PWD/QMLTheme/Theme/JASPTheme.qml
+    $$PWD/QMLTheme/Theme/JASPTheme.qml \
+    $$PWD/components/JASP/Controls/tableviewcolumn.qmodel
 
 
 HEADERS += \
@@ -190,7 +191,7 @@ HEADERS += \
     $$PWD/engine/rscriptstore.h \
     $$PWD/gui/aboutdialog.h \
     $$PWD/gui/aboutdialogjsinterface.h \
-    $$PWD/JASPControls/datasetview.h \
+    $$PWD/QML/datasetview.h \
     $$PWD/modules/analysisentry.h \
     $$PWD/modules/dynamicmodule.h \
     $$PWD/modules/dynamicmodules.h \
@@ -257,6 +258,7 @@ HEADERS += \
     $$PWD/widgets/boundqmlradiobuttons.h \
     $$PWD/widgets/boundqmltableview.h \
     $$PWD/widgets/boundqmltextinput.h \
+    $$PWD/widgets/boundqmlcombobox.h \
     $$PWD/widgets/boundsingleitemview.h \
     $$PWD/widgets/boundtableview.h \
     $$PWD/widgets/boundtablewidget.h \
@@ -393,7 +395,7 @@ SOURCES += \
     $$PWD/engine/enginesync.cpp \
     $$PWD/gui/aboutdialog.cpp \
     $$PWD/gui/aboutdialogjsinterface.cpp \
-    $$PWD/JASPControls/datasetview.cpp \
+    $$PWD/QML/datasetview.cpp \
     $$PWD/modules/analysisentry.cpp \
     $$PWD/modules/dynamicmodule.cpp \
     $$PWD/modules/dynamicmodules.cpp \
@@ -457,6 +459,7 @@ SOURCES += \
     $$PWD/widgets/boundqmlradiobuttons.cpp \
     $$PWD/widgets/boundqmltableview.cpp \
     $$PWD/widgets/boundqmltextinput.cpp \
+    $$PWD/widgets/boundqmlcombobox.cpp \
     $$PWD/widgets/boundsingleitemview.cpp \
     $$PWD/widgets/boundtableview.cpp \
     $$PWD/widgets/boundtablewidget.cpp \

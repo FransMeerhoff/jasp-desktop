@@ -17,7 +17,7 @@
 //
 
 import QtQuick 2.11
-import JASPTheme 1.0
+import JASP.Theme 1.0
 
 Button {
     id: button

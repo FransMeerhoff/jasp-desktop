@@ -18,10 +18,10 @@
 
 import QtQuick 2.11
 import QtQuick.Controls 2.4
-import JASPTheme 1.0
+import JASP.Theme 1.0
 
 JASPControl {
-    controlType: "Switch"
+    controlType: "CheckBox"
     implicitWidth: control.width; implicitHeight: control.height
     property alias text: control.text
     property alias checked: control.checked
@@ -31,34 +31,31 @@ JASPControl {
         control.clicked.connect(clicked);
     }
     
-    Switch {
+    CheckBox {
         id: control
-        height: control.indicator.height + 4
-        width: control.indicator.width + label.implicitWidth + control.spacing + 6
+        height: Theme.checkBoxIndicatorLength + 4
+        width: Theme.checkBoxIndicatorLength + label.implicitWidth + control.spacing + 6
         focus: true
         
         background: backgroundRectangle
-        
+
         indicator: Rectangle {
-            id: switchHandle
-            width: Theme.switchHeight * 2.2
-            height: Theme.switchHeight
+            width: Theme.checkBoxIndicatorLength
+            height: Theme.checkBoxIndicatorLength
             anchors.left: control.left
             anchors.leftMargin: 2
             anchors.top: control.top
-            anchors.topMargin: 2            
-            radius: Theme.switchHeight / 2
-            color: Theme.light
-            border.color: Theme.borderColor
-    
-            Rectangle {
-                id: rectangle
-    
-                width: Theme.switchHeight
-                height: Theme.switchHeight
-                radius: Theme.switchHeight / 2
-                color: Theme.light
-                border.color: Theme.borderColor
+            anchors.topMargin: 2
+            color: control.checked ? (control.enabled ? Theme.buttonBackgroundColor : Theme.disableControlBackgroundColor) : Theme.controlBackgroundColor
+            border.color: control.enabled ? (control.checked ? Theme.buttonBackgroundColor : Theme.borderColor) : Theme.disableControlBackgroundColor
+            border.width: 1
+            radius: Theme.borderRadius
+            
+            Text {
+                visible: control.checked ? true : false
+                color: Theme.white
+                text: "\u2713"
+                anchors.horizontalCenter: parent.horizontalCenter
             }
         }
         

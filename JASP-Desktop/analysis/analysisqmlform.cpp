@@ -24,6 +24,7 @@
 #include <QDebug>
 
 #include "widgets/boundqmlcheckbox.h"
+#include "widgets/boundqmlcombobox.h"
 #include "widgets/boundqmltextinput.h"
 #include "widgets/boundqmlradiobuttons.h"
 #include "widgets/boundqmllistviewpairs.h"
@@ -42,7 +43,7 @@ using namespace std;
 AnalysisQMLForm::AnalysisQMLForm(QWidget *parent, Analysis* analysis)
 	:  AnalysisForm("AnalysisQMLForm", parent), _quickWidget(new QQuickWidget(this)), _analysis(analysis), _allAvailableVariablesModel(NULL),	_errorMessagesItem(NULL)
 {
-	_quickWidget->engine()->addImportPath(":/QMLTheme");
+	_quickWidget->engine()->addImportPath("qrc:///components");
 	_quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
 
 	connect(_quickWidget,	&QQuickWidget::statusChanged,	this,	&AnalysisQMLForm::statusChangedWidgetHandler);
@@ -166,6 +167,7 @@ void AnalysisQMLForm::_parseQML()
 		case qmlControlType::Switch:		boundQMLItem = new BoundQMLCheckBox(item,		this);	break;
 		case qmlControlType::TextField:		boundQMLItem = new BoundQMLTextInput(item,		this);	break;
 		case qmlControlType::ButtonGroup:	boundQMLItem = new BoundQMLRadioButtons(item,	this);	break;
+		case qmlControlType::ComboBox:		boundQMLItem = new BoundQMLComboBox(item,		this);	break;
 		case qmlControlType::TableView:		boundQMLItem = new BoundQMLTableView(item,		this);	break;
 
 		case qmlControlType::ListView:
@@ -216,6 +218,9 @@ void AnalysisQMLForm::_parseQML()
 
 			break;
 		}
+		case qmlControlType::JASPControl:
+		default:
+			_errorMessages.append(QString::fromLatin1("Unknown type of JASPControl ") + controlName + QString::fromLatin1(" : ") + controlTypeStr);			
 		}
 		
 		if (boundQMLItem)

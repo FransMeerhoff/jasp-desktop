@@ -17,36 +17,18 @@
 //
 
 import QtQuick 2.11
-import QtQuick.Controls 2.4
-import JASPTheme 1.0
+import QtQuick.Layouts 1.3
+import JASP.Theme 1.0
 
-
-Button {
-    id: button
-
-    implicitWidth: height
-    width: 50
-    height: 30
-
-    background: Rectangle {
-        id: rectangle
-        border.width: 1
-        border.color: Theme.borderColor
-        radius: Theme.borderRadius
-        color: Theme.controlBackgroundColor
+GridLayout {
+    id: gridLayout
+    rowSpacing: Theme.rowSpacing
+    columnSpacing: Theme.columnSpacing
+    columns: 2
+    width: parent.width
         
-        Behavior on color {        
-            ColorAnimation {
-                duration: 500
-            }
-        }
-        
+    Component.onCompleted: {
+        for (var i = 0; i < children.length; i++)
+            children[i].Layout.alignment = Qt.AlignTop | Qt.AlignLeft
     }
-    
-    states: [
-        State {
-            name: "disabled"
-            PropertyChanges { target: rectangle; color: Theme.disableControlBackgroundColor }
-        }
-    ]
 }

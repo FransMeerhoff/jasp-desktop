@@ -3,7 +3,7 @@
 
 #include "enumutilities.h"
 
-DECLARE_ENUM(qmlControlType, CheckBox, Switch, TextField, ButtonGroup, TableView, ListView);
+DECLARE_ENUM(qmlControlType, JASPControl, CheckBox, Switch, TextField, ButtonGroup, TableView, ListView, ComboBox);
 DECLARE_ENUM(qmlListViewType, assignedVariables, assignedPairs, assignedAnova, availableVariables);
 
 #endif // ANALYSISQMLDEFINES_H

@@ -18,10 +18,10 @@
 
 import QtQuick 2.11
 import QtQuick.Controls 2.4
-import JASPTheme 1.0
+import JASP.Theme 1.0
 
 JASPControl {
-    controlType: "CheckBox"
+    controlType: "Switch"
     implicitWidth: control.width; implicitHeight: control.height
     property alias text: control.text
     property alias checked: control.checked
@@ -31,31 +31,34 @@ JASPControl {
         control.clicked.connect(clicked);
     }
     
-    CheckBox {
+    Switch {
         id: control
-        height: Theme.checkBoxIndicatorLength + 4
-        width: Theme.checkBoxIndicatorLength + label.implicitWidth + control.spacing + 6
+        height: control.indicator.height + 4
+        width: control.indicator.width + label.implicitWidth + control.spacing + 6
         focus: true
         
         background: backgroundRectangle
-
+        
         indicator: Rectangle {
-            width: Theme.checkBoxIndicatorLength
-            height: Theme.checkBoxIndicatorLength
+            id: switchHandle
+            width: Theme.switchHeight * 2.2
+            height: Theme.switchHeight
             anchors.left: control.left
             anchors.leftMargin: 2
             anchors.top: control.top
-            anchors.topMargin: 2
-            color: control.checked ? (control.enabled ? Theme.buttonBackgroundColor : Theme.disableControlBackgroundColor) : Theme.controlBackgroundColor
-            border.color: control.enabled ? (control.checked ? Theme.buttonBackgroundColor : Theme.borderColor) : Theme.disableControlBackgroundColor
-            border.width: 1
-            radius: Theme.borderRadius
-            
-            Text {
-                visible: control.checked ? true : false
-                color: Theme.white
-                text: "\u2713"
-                anchors.horizontalCenter: parent.horizontalCenter
+            anchors.topMargin: 2            
+            radius: Theme.switchHeight / 2
+            color: Theme.light
+            border.color: Theme.borderColor
+    
+            Rectangle {
+                id: rectangle
+    
+                width: Theme.switchHeight
+                height: Theme.switchHeight
+                radius: Theme.switchHeight / 2
+                color: Theme.light
+                border.color: Theme.borderColor
             }
         }
         
