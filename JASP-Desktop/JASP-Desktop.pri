@@ -216,20 +216,27 @@ HEADERS += \
     $$PWD/variablespage/labelfiltergenerator.h \
     $$PWD/variablespage/levelstablemodel.h \
     $$PWD/widgets/backstage/authwidget.h \
-    $$PWD/widgets/backstage/backstagecomputer.h \
     $$PWD/widgets/backstage/backstagedatalibrary.h \
-    $$PWD/widgets/backstage/backstageosf.h \
     $$PWD/widgets/backstage/backstagepage.h \
+    $$PWD/widgets/backstage/backstagerecentfiles.h \
+    $$PWD/widgets/backstage/recentfileslistmodel.h\
+    $$PWD/widgets/backstage/fsbmdatalibrary.h \  
+    $$PWD/widgets/backstage/fsbmrecentfiles.h\ 
+    $$PWD/widgets/backstage/backstagecurrentfile.h \ 
+    $$PWD/widgets/backstage/currentfilelistmodel.h\     
+    $$PWD/widgets/backstage/fsbmcurrentfile.h\  
+    $$PWD/widgets/backstage/backstagecomputer.h \ 
+    $$PWD/widgets/backstage/computerlistmodel.h \ 
+    $$PWD/widgets/backstage/backstageosfold.h \ 
+    $$PWD/widgets/backstage/backstageosf.h \ 
+    $$PWD/widgets/backstage/osflistmodel.h \ 
     $$PWD/widgets/backstage/breadcrumbs.h \
     $$PWD/widgets/backstage/datalibrarybreadcrumbsmodel.h \
     $$PWD/widgets/backstage/datalibrarylistmodel.h \
     $$PWD/widgets/backstage/elidelabel.h \
     $$PWD/widgets/backstage/fsbmcomputer.h \
-    $$PWD/widgets/backstage/fsbmcurrent.h \
-    $$PWD/widgets/backstage/fsbmexamples.h \
     $$PWD/widgets/backstage/fsbmodel.h \
     $$PWD/widgets/backstage/fsbmosf.h \
-    $$PWD/widgets/backstage/fsbmrecent.h \
     $$PWD/widgets/backstage/fsbmrecentfolders.h \
     $$PWD/widgets/backstage/fsbrowser.h \
     $$PWD/widgets/backstage/fsentry.h \
@@ -419,20 +426,27 @@ SOURCES += \
     $$PWD/variablespage/labelfiltergenerator.cpp \
     $$PWD/variablespage/levelstablemodel.cpp \
     $$PWD/widgets/backstage/authwidget.cpp \
-    $$PWD/widgets/backstage/backstagecomputer.cpp \
     $$PWD/widgets/backstage/backstagedatalibrary.cpp \
-    $$PWD/widgets/backstage/backstageosf.cpp \
     $$PWD/widgets/backstage/backstagepage.cpp \
+    $$PWD/widgets/backstage/backstagerecentfiles.cpp \
+    $$PWD/widgets/backstage/recentfileslistmodel.cpp \
+    $$PWD/widgets/backstage/fsbmdatalibrary.cpp \  
+    $$PWD/widgets/backstage/fsbmrecentfiles.cpp \ 
+    $$PWD/widgets/backstage/backstagecurrentfile.cpp \ 
+    $$PWD/widgets/backstage/currentfilelistmodel.cpp \     
+    $$PWD/widgets/backstage/fsbmcurrentfile.cpp \  
+    $$PWD/widgets/backstage/backstagecomputer.cpp \ 
+    $$PWD/widgets/backstage/computerlistmodel.cpp \ 
+    $$PWD/widgets/backstage/backstageosfold.cpp \ 
+    $$PWD/widgets/backstage/backstageosf.cpp \ 
+    $$PWD/widgets/backstage/osflistmodel.cpp \ 
     $$PWD/widgets/backstage/breadcrumbs.cpp \
     $$PWD/widgets/backstage/datalibrarybreadcrumbsmodel.cpp \
     $$PWD/widgets/backstage/datalibrarylistmodel.cpp \
     $$PWD/widgets/backstage/elidelabel.cpp \
     $$PWD/widgets/backstage/fsbmcomputer.cpp \
-    $$PWD/widgets/backstage/fsbmcurrent.cpp \
-    $$PWD/widgets/backstage/fsbmexamples.cpp \
     $$PWD/widgets/backstage/fsbmodel.cpp \
     $$PWD/widgets/backstage/fsbmosf.cpp \
-    $$PWD/widgets/backstage/fsbmrecent.cpp \
     $$PWD/widgets/backstage/fsbmrecentfolders.cpp \
     $$PWD/widgets/backstage/fsbrowser.cpp \
     $$PWD/widgets/backstage/fsentrywidget.cpp \
@@ -511,11 +525,10 @@ FORMS += \
     $$PWD/gui/preferencesdialog.ui \
     $$PWD/widgets/backstage/authwidget.ui \
     $$PWD/widgets/backstage/backstagecomputer.ui \
-    $$PWD/widgets/backstage/backstagedatalibrary.ui \
+    $$PWD/widgets/backstage/backstageform.ui \
     $$PWD/mainwindow.ui \
     $$PWD/widgets/anovamodelwidget.ui \
-    $$PWD/widgets/backstageform.ui \
     $$PWD/widgets/boundassignwidget.ui \
     $$PWD/widgets/datasetbrowser.ui \
-    $$PWD/widgets/subjectivepriorswidget.ui \
-    $$PWD/widgets/variableswidget.ui
+    $$PWD/widgets/subjectivepriorswidget.ui 
+

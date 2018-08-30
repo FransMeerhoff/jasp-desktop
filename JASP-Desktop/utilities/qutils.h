@@ -29,5 +29,6 @@ QString tq(const std::string &from);
 QStringList tql(const std::vector<std::string> &from);
 std::vector<std::string> fromQstringToStdVector(const QString &input, const QString &delimetor);
 QString stripFirstAndLastChar(QString result, const QString &strip);
+QString getShortCutKey();
 
 #endif // QUTILS_H

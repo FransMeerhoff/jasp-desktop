@@ -158,9 +158,6 @@ OTHER_FILES  += \
 	JASP/R/networkanalysis.R
 
 DISTFILES += \
-<<<<<<< HEAD
     JASP/DESCRIPTION \
     JASP/NAMESPACE
-=======
-    JASP/R/exposeUs.R
->>>>>>> Dynamic Modules for JASP with QML forms
+

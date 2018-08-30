@@ -62,4 +62,12 @@ QString stripFirstAndLastChar(QString result, const QString &strip)
 	return result;	
 }
 
-	
+QString getShortCutKey()
+{
+#ifdef __APPLE__
+		QString shortCutKey = "\u2318";
+#else
+		QString shortCutKey = "Ctrl";
+#endif	
+		return shortCutKey;
+}

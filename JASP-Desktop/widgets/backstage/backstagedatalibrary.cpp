@@ -1,12 +1,12 @@
 #include "backstagedatalibrary.h"
-#include "ui_backstagedatalibrary.h"
+#include "ui_backstageform.h"
 
 BackstageDataLibrary::BackstageDataLibrary(QWidget *parent) : BackstagePage(parent),
-	ui(new Ui::BackstageDataLibrary)
+	ui(new Ui::BackstageForm)
 {
 	ui->setupUi(this);
 	
-	_dataLibraryBreadCrumbsModel = new DataLibraryBreadCrumbsModel(this);
+	_dataLibraryBreadCrumbsModel = new DataLibraryBreadCrumbsListModel(this);
 	_dataLibraryBreadCrumbsModel->setSeperator(QDir::separator());
 	
 	_dataLibraryListModel = new DataLibraryListModel(this);

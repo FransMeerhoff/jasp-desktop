@@ -147,18 +147,6 @@ const char* STDCALL jaspRCPP_run(const char* name, const char* title, const char
 	rinside_consoleLog->clearConsoleBuffer();
 #endif
 
-<<<<<<< HEAD
-=======
-	if (rfile && *rfile)
-	{
-		stringstream ss;
-		ss << "loadNamespace(\"JASP\"); source(\"";
-		ss << rfile;
-		ss << "\")";
-		rinside->parseEvalQNT(ss.str());
-	}
-
->>>>>>> Dynamic Modules for JASP with QML forms
 	if(usesJaspResults)
 	{
 		///Some stuff for jaspResults etc
