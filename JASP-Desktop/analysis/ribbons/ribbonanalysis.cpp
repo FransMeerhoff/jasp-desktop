@@ -17,7 +17,6 @@
 //
 
 #include "ribbonanalysis.h"
-#include "ui_ribbonanalysis.h"
 
 #include <QMenu>
 #include <QDebug>

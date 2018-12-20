@@ -52,6 +52,7 @@ Item
 	FileList {
 		id:			computerList
 		cppModel:	fileMenuModel.computer.listModel
+		hasBreadCrumbs : false
 
 		anchors
 		{

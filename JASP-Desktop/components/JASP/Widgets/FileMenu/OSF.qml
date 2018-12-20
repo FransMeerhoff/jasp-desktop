@@ -63,13 +63,13 @@ Item
 		height:				loggedin ? 40 : 0
 		anchors.top:		headLabel.bottom
 		anchors.left:		parent.left
-		anchors.right:		parent.right
+		anchors.right:		parent.rght
 		anchors.leftMargin:	12  //Position datalibrary breadcrumbs
 
-		onCrumbButtonClicked: fileMenuModel.osf.breadCrumbs.indexChanged(modelIndex);
+		//onCrumbButtonClicked: fileMenuModel.osf.breadCrumbs.indexChanged(modelIndex);
+		onCrumbButtonClicked: model.indexChanged(modelIndex); 
 	}
-	
-	
+		
 		
 	Item  /////////////////////////// File dialog to save in OSF ////////////////////////////////////
 	{
@@ -210,6 +210,7 @@ Item
 		id:			osfList
 		visible:	loggedin && !processing
 		cppModel:	fileMenuModel.osf.listModel
+		hasBreadCrumbs : true
 		
 		anchors
 		{

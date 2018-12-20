@@ -103,7 +103,6 @@ private:
 	void initQWidgetGUIParts();
 	void StartOnlineDataManager();
 
-
 	void packageChanged(DataSetPackage *package);
 	void packageDataChanged(DataSetPackage *package, std::vector<std::string> &changedColumns, std::vector<std::string> &missingColumns, std::map<std::string, std::string> &changeNameColumns,	bool rowCountChanged);
 	void refreshAnalysesUsingColumns(std::vector<std::string> &changedColumns, std::vector<std::string> &missingColumns, std::map<std::string, std::string> &changeNameColumns, bool rowCountChanged);
@@ -145,8 +144,7 @@ private:
 	void loadRibbonQML();
 	void loadQML();
 
-	void			setCurrentTab(QString tabName);
-
+	void setCurrentTab(QString tabName);
 
 	void pauseEngines();
 	void resumeEngines();
@@ -224,7 +222,6 @@ private slots:
 
 	void saveJaspFileHandler();
 	//void handleRibbonButtonClicked(QVariant);
-
 
 	void ppiChangedHandler(int ppi) { setPPIHandler(ppi); }
 

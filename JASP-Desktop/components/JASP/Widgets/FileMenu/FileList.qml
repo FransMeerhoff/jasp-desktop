@@ -14,11 +14,13 @@ ListView
 
 	spacing:				10
 	model:					cppModel
+	property bool hasBreadCrumbs: false
 
 	delegate:	ListItem
 	{
 		width:		listView.width -  (rightscrollbar.width > 0 ? rightscrollbar.width + listView.spacing : 0)
 		cppModel:	listView.cppModel
+		hasBreadCrumbs: listView.hasBreadCrumbs
 	}
 
 	JASPScrollBar {
