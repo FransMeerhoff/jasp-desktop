@@ -8,15 +8,44 @@ FocusScope
 {
 	id:			fileMenu
 
+	function updateNavigationKeys()
+	{
+		for (var i = 0; i < actionRepeaterId.count; i++)
+		{
+			var nextActElt = (i < (actionRepeaterId.count - 1) ? actionRepeaterId.itemAt(i+1) : actionRepeaterId.itemAt(0));
+			actionRepeaterId.itemAt(i).KeyNavigation.down = nextActElt;
+			actionRepeaterId.itemAt(i).KeyNavigation.tab = nextActElt;
+			actionRepeaterId.itemAt(i).KeyNavigation.right = resourceRepeaterId.itemAt(0);
+		}
+
+		for (var j = 0; j < resourceRepeaterId.count; j++)
+		{
+			var nextResElt = (j < (resourceRepeaterId.count - 1) ? resourceRepeaterId.itemAt(j+1) : resourceRepeaterId.itemAt(0));
+			resourceRepeaterId.itemAt(j).KeyNavigation.down = nextResElt;
+			resourceRepeaterId.itemAt(j).KeyNavigation.tab = nextResElt;
+			resourceRepeaterId.itemAt(j).KeyNavigation.left = actionRepeaterId.itemAt(0);
+		}
+
+	}
+
+	function waitForClickButton (namerole)
+	{
+		if (namerole === "Close") return true;
+		if (namerole === "Save") return true;
+		return false;
+	}
+
 	width:		slidePart.width
 	height:		600
 	z:			1
 	visible:	actionMenu.x + actionMenu.width > 0
 
-
+	property variant resourcesbuttons:		["Recent Files", "Current File", "Computer", "OSF", "Data Library"]
 	property int action_button_height:		35 * preferencesModel.uiScale
 	property int resource_button_height:	1.5 * action_button_height
 	property int colWidths:					150 * preferencesModel.uiScale
+
+	focus: fileMenuModel.visible
 
 	Item
 	{
@@ -62,19 +91,70 @@ FocusScope
 				Repeater
 				{
 
+					id: actionRepeaterId
+
+					Component.onCompleted:
+					{
+						updateNavigationKeys()
+						itemAt(0).focus = true;
+					}
+
 					model:					fileMenuModel.actionButtons
 
 					MenuButton
 					{
 						id:					actionButton
+
+						property bool ignoreFocusChanged: false
 						text:				nameRole
+						color:				_pressed || activeFocus ? Theme.buttonColorPressed :	_showHovered ? "transparent"						: "transparent"
 						selected:			fileMenuModel.fileoperation === typeRole
 						width:				parent.width-6
 						height:				action_button_height
 						anchors.leftMargin: 3
 						anchors.left:		parent.left
-						onClicked:			fileMenuModel.actionButtons.buttonClicked(typeRole)
-						enabled:			enabledRole
+
+						onHoveredChanged:
+						{
+							if (hovered)
+							{
+								if (!activeFocus)
+								{
+									ignoreFocusChanged = true;
+									focus = true;
+								}
+								if (!waitForClickButton(nameRole))
+								{
+									fileMenuModel.actionButtons.buttonClicked(typeRole);
+									updateNavigationKeys();
+								}
+							}
+						}
+
+						onFocusChanged:
+						{
+							if (activeFocus && !ignoreFocusChanged && !waitForClickButton(nameRole))
+							{
+								fileMenuModel.actionButtons.buttonClicked(typeRole);
+								updateNavigationKeys();
+							}
+							ignoreFocusChanged = false;
+						}
+
+						onClicked:
+						{
+							if (!activeFocus)
+							{
+								focus = true;
+								ignoreFocusChanged = true;
+							}
+							else
+							{
+								fileMenuModel.actionButtons.buttonClicked(typeRole);								
+								updateNavigationKeys();
+							}
+						}
+						enabled:	enabledRole
 					}
 				}
 			}
@@ -82,7 +162,7 @@ FocusScope
 
 		Rectangle
 		{
-			id:				locationMenu
+			id:				resouceMenu
 			color:			Theme.uiBackground
 
 			width:			fileMenu.colWidths
@@ -97,7 +177,7 @@ FocusScope
 
 			Column
 			{
-				id: fileLocation
+				id: resourceLocation
 
 				anchors.top:				parent.top
 				anchors.topMargin:			5
@@ -107,24 +187,66 @@ FocusScope
 
 				Repeater
 				{
+
+					id: resourceRepeaterId
+
 					model:					fileMenuModel.resourceButtonsVisible
 
 					MenuButton
 					{
 						id:					resourceButton
+
+						property bool ignoreFocusChanged: false
 						text:				nameRole
+						//clickonhover:		true
 						width:				parent.width-6
 						height:				resource_button_height
+						color:				_pressed || activeFocus ? Theme.buttonColorPressed :	_showHovered ? "transparent"						: "transparent"
 						anchors.leftMargin: 3
 						anchors.left:		parent.left
 						selected:			qmlRole === fileMenuModel.resourceButtons.currentQML
-						onClicked:			fileMenuModel.resourceButtonsVisible.clicked(typeRole)
+
+						onHoveredChanged:
+						{
+							if (hovered)
+							{
+								if (!activeFocus)
+								{
+									ignoreFocusChanged = true;
+									focus = true;
+								}
+								fileMenuModel.resourceButtonsVisible.clicked(typeRole);
+							}
+						}
+
+						onFocusChanged:
+						{
+							if (activeFocus && !ignoreFocusChanged)
+							{
+								fileMenuModel.resourceButtonsVisible.clicked(typeRole);
+							}
+							ignoreFocusChanged = false;
+						}
+
+						onClicked:
+						{
+							if (!activeFocus)
+							{
+								ignoreFocusChanged = true;
+								focus = true;
+							}
+							else
+							{
+								fileMenuModel.resourceButtonsVisible.clicked(typeRole);							
+							}
+
+						}
+
+						enabled:			true
 					}
 				}
 			}
 		}
-
-		focus: true
 
 		Item
 		{
@@ -153,12 +275,12 @@ FocusScope
 
 			property real	otherColumnsWidth: fileMenu.colWidths * 2
 
-			//anchors.left:	locationMenu.right
-
 			x:				otherColumnsWidth - (aButtonVisible && fileMenuModel.visible ? 0 : width)
-            width:			Math.min(mainWindowRoot.width - otherColumnsWidth, 800 * preferencesModel.uiScale)
+			//width:			Math.min(mainWindowRoot.width - otherColumnsWidth, 800 * preferencesModel.uiScale)
+			width:			fileMenu.parent.width - otherColumnsWidth
 			height:			parent.height
 			visible:		fileMenuModel.visible || x + width > otherColumnsWidth + 1
+			anchors.left:	resourceLocation.right
 
 			border.width:	1
 			border.color:	Theme.grayDarker

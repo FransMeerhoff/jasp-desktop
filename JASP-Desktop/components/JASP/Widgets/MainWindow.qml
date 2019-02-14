@@ -59,7 +59,6 @@ Window
 				}
 		}
 
-
 		RibbonBar
 		{
 			id	: ribbon
