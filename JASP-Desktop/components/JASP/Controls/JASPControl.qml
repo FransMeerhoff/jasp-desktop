@@ -52,6 +52,8 @@ FocusScope
 	
 	Component.onCompleted:
 	{
+		console.log(" !!!!!!!!!!!! On Component completed  !!!!!!!!!!!!!!" + Component.objectName)
+
 		if (typeof(control) !== "undefined")
 		{
 			if (!background)
