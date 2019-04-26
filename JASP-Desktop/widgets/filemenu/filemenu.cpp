@@ -365,6 +365,9 @@ void FileMenu::fileOperationClicked(const ActionButtons::FileOperation action)
 		close();
 		setSaveMode(FileEvent::FileOpen);
 		break;
+	case ActionButtons::FileOperation::About:
+		showAboutRequest();
+		break;
 	default:
 		break;
 	}

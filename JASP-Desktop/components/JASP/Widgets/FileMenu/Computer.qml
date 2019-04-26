@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.3
 import JASP.Theme 1.0
 import JASP.Widgets 1.0
 
-Item
+FocusScope
 {
 	id:rect
 
@@ -43,6 +43,8 @@ Item
 		id:			computerList
 		cppModel:	fileMenuModel.computer.listModel
 		hasBreadCrumbs: false
+
+		focus: true
 
 		anchors
 		{

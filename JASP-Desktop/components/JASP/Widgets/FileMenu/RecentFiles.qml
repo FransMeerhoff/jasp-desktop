@@ -3,7 +3,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import JASP.Theme 1.0
 
-Item
+FocusScope
 {
 	id:			rect
 
@@ -14,8 +14,10 @@ Item
 
 	FileList {
 		id:			recentFilesList
+
 		cppModel:	fileMenuModel.recentFiles.listModel
 		hasBreadCrumbs : false
+		focus: true
 
 		anchors
 		{
@@ -27,4 +29,5 @@ Item
 			bottomMargin:	Theme.generalAnchorMargin
 		}
 	}
+
 }

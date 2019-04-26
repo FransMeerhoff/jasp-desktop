@@ -22,8 +22,9 @@ FocusScope
 		for (var j = 0; j < resourceRepeaterId.count; j++)
 		{
 			var nextResElt = (j < (resourceRepeaterId.count- 1) ? resourceRepeaterId.itemAt(j + 1) : resourceRepeaterId.itemAt(0)).children[0]
-			resourceRepeaterId.itemAt(j).children[0].KeyNavigation.down = nextResElt
-			resourceRepeaterId.itemAt(j).children[0].KeyNavigation.tab = nextResElt
+			var resourceItem = resourceRepeaterId.itemAt(j).children[0];
+			resourceItem.KeyNavigation.down = nextResElt
+			resourceItem.KeyNavigation.tab = nextResElt
 			if (selectedActionMenu)
 				resourceRepeaterId.itemAt(j).children[0].KeyNavigation.left = selectedActionMenu
 		}
@@ -175,10 +176,7 @@ FocusScope
 
 							onClicked:
 							{
-								if (typeRole === FileOperation.About)
-									fileMenuModel.showAboutRequest()
-								else
-									fileMenuModel.actionButtons.buttonClicked(typeRole)
+								fileMenuModel.actionButtons.buttonClicked(typeRole)
 								updateNavigationKeys()
 							}
 						}
@@ -251,15 +249,17 @@ FocusScope
 							clickOnHover: true
 							selected: activeFocus
 
-							onClicked: fileMenuModel.resourceButtonsVisible.clicked(typeRole)
+							onClicked:
+							{
+								fileMenuModel.resourceButtonsVisible.clicked(typeRole)
+								KeyNavigation.right = resourceLoader.item
+							}
 						}
 
 					}
 				}
 			}
 		}
-
-		focus: true
 
 		Item
 		{
@@ -313,7 +313,8 @@ FocusScope
 
 			Loader
 			{
-				id: showSelectedSubScreen
+				id:resourceLoader
+
 				anchors.fill: parent
 				source: fileMenuModel.resourceButtons.currentQML
 			}

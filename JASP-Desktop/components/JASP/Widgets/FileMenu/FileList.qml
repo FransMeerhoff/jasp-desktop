@@ -17,6 +17,8 @@ FocusScope
 		maximumFlickVelocity:	Theme.maximumFlickVelocity
 		clip:					true
 		anchors.fill: parent
+		currentIndex: 0
+		focus: true
 
 		spacing:				10
 		model:					cppModel
@@ -32,5 +34,8 @@ FocusScope
 			id:				rightscrollbar
 			flickable:		parent
 		}
+
+		//Component.onCompleted: listView.itemAt(0,0).forceActiveFocus();
+
 	}
 }

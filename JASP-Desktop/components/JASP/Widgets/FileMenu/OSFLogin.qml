@@ -31,7 +31,7 @@ Rectangle
 
 	Component.onCompleted:
 	{
-		usernameText.focus = true
+		//usernameText.focus = true
 	}
 
 	Image

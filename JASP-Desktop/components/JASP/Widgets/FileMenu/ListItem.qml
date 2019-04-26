@@ -16,15 +16,19 @@ Rectangle
 	property var cppModel:			undefined
 
 	property bool mainHovered:		descriptionMouseArea.containsMouse || fileEntryMouseArea.containsMouse
-	property bool allHovered:		mainHovered || firstFileOrFolderMouseArea.containsMouse || datafileMouseArea.containsMouse
+	property bool allHovered:		activeFocus || mainHovered || firstFileOrFolderMouseArea.containsMouse || datafileMouseArea.containsMouse
 	property bool hasBreadCrumbs:	false
-	focus:true
+	focus: true
 
 	function openStuff(model)
 	{
 		if (model.type === 3)	rectTitleAndDescripton.cppModel.changePath(model.name, model.path); //Folder type
 		else					rectTitleAndDescripton.cppModel.openFile(model.path)
 	}
+
+	Keys.onSpacePressed:	{ openStuff(model); event.accepted = true;}
+	Keys.onEnterPressed:	{ openStuff(model);  event.accepted = true;}
+	Keys.onReturnPressed:	{ openStuff(model);  event.accepted = true;}
 
 	Rectangle
 	{

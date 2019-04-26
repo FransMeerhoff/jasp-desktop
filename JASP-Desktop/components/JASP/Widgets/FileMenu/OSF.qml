@@ -21,7 +21,7 @@ import QtQuick.Controls 2.2
 import JASP.Theme 1.0
 import JASP.Widgets 1.0
 
-Item
+FocusScope
 {
 	id	: rect
 
@@ -318,6 +318,8 @@ Item
 		visible			: loggedin && !processing
 		cppModel		: fileMenuModel.osf.listModel
 		hasBreadCrumbs	: true
+
+		focus: true
 
 		anchors
 		{

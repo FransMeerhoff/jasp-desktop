@@ -3,7 +3,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import JASP.Theme 1.0
 
-Item
+FocusScope
 {
 	id:			rect
 
@@ -49,6 +49,7 @@ Item
 		id:			datalibrarylist
 		cppModel:	fileMenuModel.datalibrary.listModel
 		hasBreadCrumbs : true
+		focus: true
 
 		anchors
 		{
