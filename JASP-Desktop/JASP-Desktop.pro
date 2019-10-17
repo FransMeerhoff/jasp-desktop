@@ -17,12 +17,12 @@ CONFIG -= app_bundle
 
 DESTDIR = ..
 
-linux { 
+linux {
 	exists(/app/lib/*) {
-			TARGET = org.jaspstats.JASP 
-	} else { 
-			TARGET = jasp 
-	} 
+			TARGET = org.jaspstats.JASP
+	} else {
+			TARGET = jasp
+	}
 	message(TARGET => $$TARGET) #Useful for debugging flatpak
 } else {
 	TARGET = JASP
@@ -135,21 +135,12 @@ windows {
 windows:RC_FILE = icon.rc
 
 HELP_PATH = $${PWD}/../Docs/help
-RESOURCES_PATH = $${PWD}/../Resources
 
 win32 {
-    RESOURCES_PATH_DEST = $${OUT_PWD}/../Resources/
 
-    RESOURCES_PATH ~= s,/,\\,g
-    RESOURCES_PATH_DEST ~= s,/,\\,g
-	QTBIN=$$QMAKE_QMAKE
-	QTBIN ~= s,qmake.exe,,g
-	QTBIN ~= s,/,\\,g
 	EXTENSIONS=cpp,qml
 	WINPWD=$$PWD/..
 	WINPWD ~= s,/,\\,g
-
-    copyres.commands  += $$quote(cmd /c xcopy /S /I /Y $${RESOURCES_PATH} $${RESOURCES_PATH_DEST})
 
 	equals(GENERATE_LANGUAGE_FILES,1) {
 	maketranslations.commands += $$quote($${QTBIN}lupdate.exe -extensions $${EXTENSIONS} -recursive $${WINPWD} -ts $${WINPWD}\jasp.po) &&
@@ -160,7 +151,6 @@ win32 {
 }
 
 macx {
-    RESOURCES_PATH_DEST = $${OUT_PWD}/../Resources/
 
 	equals(GENERATE_LANGUAGE_FILES,1) {
 	maketranslations.commands += lupdate -extensions cpp,qml -recursive $$PWD/.. -ts $$PWD/../jasp.po ;
@@ -171,8 +161,6 @@ macx {
 	maketranslations.commands += cp $$RESOURCES_PATH/Translations/*.qm $$RESOURCES_PATH_DEST/Translations/ ;
 	}
 
-	copyres.commands += $(MKDIR) $$RESOURCES_PATH_DEST ;
-	copyres.commands += cp -R $$RESOURCES_PATH/* $$RESOURCES_PATH_DEST ;
 }
 
 linux {
@@ -181,6 +169,8 @@ linux {
     copyres.commands += $(MKDIR) $$RESOURCES_PATH_DEST ;
     copyres.commands += cp -R $$RESOURCES_PATH/* $$RESOURCES_PATH_DEST ;
 }
+
+PRE_TARGETDEPS	+= copyres copylibs
 
 ! equals(PWD, $${OUT_PWD}) {
 	QMAKE_EXTRA_TARGETS += copyres

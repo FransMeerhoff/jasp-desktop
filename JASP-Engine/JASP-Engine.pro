@@ -19,7 +19,7 @@ target.path = $$INSTALLPATH
 INSTALLS += target
 
 DEPENDPATH = ..
-PRE_TARGETDEPS += ../JASP-Common
+PRE_TARGETDEPS += ../JASP-Common ../JASP-R-Interface copyR copylibs
 
 unix: PRE_TARGETDEPS += ../JASP-Common
 LIBS += -L.. -l$$JASP_R_INTERFACE_NAME -lJASP-Common
@@ -47,7 +47,19 @@ macx:  LIBS += -L$$_R_HOME/lib -lR
 
 INCLUDEPATH += $$PWD/../JASP-Common/
 
-win32:LIBS += -lole32 -loleaut32
+macx{
+	QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-parameter -Wno-unused-local-typedef
+	QMAKE_CXXFLAGS += -Wno-c++11-extensions
+	QMAKE_CXXFLAGS += -Wno-c++11-long-long
+	QMAKE_CXXFLAGS += -Wno-c++11-extra-semi
+	QMAKE_CXXFLAGS += -stdlib=libc++
+	QMAKE_EXTRA_TARGETS += copyR copylibs
+}
+
+win32{
+	QMAKE_CXXFLAGS += -DBOOST_USE_WINDOWS_H -DNOMINMAX -DBOOST_INTERPROCESS_BOOTSTAMP_IS_SESSION_MANAGER_BASED
+	LIBS += -lole32 -loleaut32
+}
 
 mkpath($$OUT_PWD/../R/library)
 
@@ -74,6 +86,8 @@ exists(/app/lib/*) {
 
 	QMAKE_EXTRA_TARGETS += RemoveJASPRPkgLock
 	POST_TARGETDEPS     += RemoveJASPRPkgLock
+
+	QMAKE_EXTRA_TARGETS += copyR copylibs
 	}
 
 	QMAKE_EXTRA_TARGETS += InstallJASPgraphsRPackage
@@ -239,5 +253,3 @@ DISTFILES += \
     JASPgraphs/inst/examples/ex-PlotPieChart.R \
     JASPgraphs/inst/examples/ex-PlotPriorAndPosterior.R \
     JASPgraphs/inst/examples/ex-PlotRobustnessSequential.R
-
-

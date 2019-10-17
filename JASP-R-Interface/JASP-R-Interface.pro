@@ -25,7 +25,9 @@ windows{
   LIBS        += -L$$_R_HOME/bin/$$ARCH -lR
 }
 
-macx: QMAKE_CLEAN +=$$OUT_PWD/$$DESTDIR/'lib'$$JASP_R_INTERFACE_TARGET'*.dylib'
+macx: {
+	QMAKE_CLEAN +=$$OUT_PWD/$$DESTDIR/'lib'$$JASP_R_INTERFACE_TARGET'*.dylib'
+}
 
 INCLUDEPATH += ../JASP-Common
 DEFINES     += JASP_R_INTERFACE_LIBRARY QT_DEPRECATED_WARNINGS

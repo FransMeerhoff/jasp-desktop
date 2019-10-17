@@ -38,6 +38,8 @@ DEFINES += GIT_CURRENT_BRANCH=\"$$GIT_BRANCH\"
 DEFINES += GIT_CURRENT_COMMIT=\"$$GIT_COMMIT\"
 
 JASP_REQUIRED_FILES = $$PWD/../jasp-required-files
+RESOURCES_PATH = $${PWD}/Resources
+RESOURCES_PATH_DEST = $${OUT_PWD}/../Resources/
 
 #message(using JASP_REQUIRED_FILES of $$JASP_REQUIRED_FILES)
 
@@ -109,3 +111,53 @@ macx {
 	QMAKE_CXXFLAGS			+= -Wno-c++11-extensions -Wno-c++11-long-long -Wno-c++11-extra-semi -stdlib=libc++ -Wno-deprecated-declarations
 }
 
+win32{
+		RESOURCES_PATH_DEST ~= s,/,\\,g
+		RESOURCES_PATH ~= s,/,\\,g
+		JASP_REQUIRED_FILES ~= s,/,\\,g
+		BINDIR =  $$OUT_PWD\..
+		BINDIR ~= s,/,\\,g
+		BITS = $$ARCH
+		BITS ~= s,x,,
+		QTBIN=$$QMAKE_QMAKE
+		QTBIN ~= s,qmake.exe,,g
+		QTBIN ~= s,/,\\,g
+
+		!exists($$OUT_PWD/../libboost*.lib)	{message(Missing libs detected) copylibs.commands += $$quote(cmd /c xcopy /S /I /Y $${JASP_REQUIRED_FILES}\\$${BITS} $${BINDIR}) }
+		!exists($$OUT_PWD/../lib*.dll)	{message(Missing dlls detected) copylibs.commands += $$quote(cmd /c xcopy /S /I /Y $${JASP_REQUIRED_FILES}\\$${BITS} $${BINDIR}) }
+		!exists($$OUT_PWD/../JAGS)	{message(Missing JAGS) copylibs.commands += $$quote(cmd /c xcopy /S /I /Y $${JASP_REQUIRED_FILES}\\$${BITS} $${BINDIR}) }
+		!exists($$OUT_PWD/../Resources) {message(Missing Resources) copyres.commands  += $$quote(cmd /c xcopy /S /I /Y $${RESOURCES_PATH} $${RESOURCES_PATH_DEST})}
+		!exists($$OUT_PWD/../R/include) {message(Missing R Files) copyR.commands += $$quote(cmd /c xcopy /S /I /Y $${JASP_REQUIRED_FILES}\\R $${BINDIR}\\R)}
+
+}
+
+macx{
+
+	RESOURCES_PATH_DEST = $${OUT_PWD}/../Resources/
+
+	!exists($$OUT_PWD/../Resources){
+		message(Missing Resources)
+		copyres.commands += $(MKDIR) $$RESOURCES_PATH_DEST ;
+		copyres.commands += cp -R $$RESOURCES_PATH/* $$RESOURCES_PATH_DEST ;
+	}
+
+	!exists($$OUT_PWD/../../Frameworks){
+		message(Missing Frameworks detected)
+		copyR.commands += [ ! -d $$OUT_PWD/../../Frameworks ] && ln -s $$JASP_REQUIRED_FILES/Frameworks $$OUT_PWD/../../Frameworks ;
+	}
+
+	!exists($$OUT_PWD/../libboost*.a){
+		message(Missing libs .a detected)
+		copylibs.commands += cp $$JASP_REQUIRED_FILES/*.a $$OUT_PWD/.. ;
+	}
+
+	!exists($$OUT_PWD/../libssl*.dylib){
+		message(Missing dyLibs detected)
+		copylibs.commands += cp $$JASP_REQUIRED_FILES/*.dylib $$OUT_PWD/.. ;
+	}
+
+	!exists($$OUT_PWD/../JAGS){
+		message(Missing JAGS detected)
+		copylibs.commands += cp -r $$JASP_REQUIRED_FILES/JAGS/ $$OUT_PWD/../JAGS/ ;
+	}
+}
