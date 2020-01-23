@@ -52,7 +52,9 @@ public:
 	static void sync();
 	static void remove(Settings::Type key);
 	static QSettings* getSettings();
+	static bool isKeySet(Settings::Type key);
 	static const char *	defaultMissingValues;
+
 
 private:
 	struct Setting {

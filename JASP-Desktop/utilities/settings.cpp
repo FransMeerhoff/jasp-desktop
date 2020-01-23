@@ -74,3 +74,8 @@ QSettings *Settings::getSettings()
 		_settings = new QSettings();
 	return _settings;
 }
+
+bool Settings::isKeySet(Settings::Type key)
+{
+	return getSettings()->contains(Settings::Values[key].type);
+}
