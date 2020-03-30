@@ -450,7 +450,8 @@ msgstr ""
 "bevat."
 
 msgid "Unpooled error term only allowed in balanced designs."
-msgstr "Aparte fout term enkel toegestaan bij gebalanceerde designs."
+msgstr ""
+"Niet-gepoolde foutterm alleen toegestaan in uitgebalanceerde ontwerpen."
 
 msgid ""
 "%s corrected p-values are not appropriate for repeated measures post-hoc "
