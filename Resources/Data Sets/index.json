@@ -181,7 +181,7 @@
           ]
         }
       ],
-      "debug": false
+      "debug": "false"
     },
     {
       "name": "1. Descriptives",
@@ -204,7 +204,7 @@
           "associated_datafile": "Sleep.csv"
         }
       ],
-      "debug": false
+      "debug": "false"
     },
     {
       "name": "2. T-Tests",
@@ -262,7 +262,7 @@
           "associated_datafile": "Weight Gain.csv"
         }
       ],
-      "debug": false
+      "debug": "false"
     },
     {
       "name": "3. ANOVA",
@@ -362,7 +362,7 @@
           "associated_datafile": "Viagra.csv"
         }
       ],
-      "debug": false
+      "debug": "false"
     },
     {
       "name": "4. Regression",
@@ -448,7 +448,7 @@
           "associated_datafile": "Titanic.csv"
         }
       ],
-      "debug": false
+      "debug": "false"
     },
     {
       "name": "5. Frequencies",
@@ -533,7 +533,7 @@
           "kind": "file"
         }
       ],
-      "debug": false
+      "debug": "false"
     },
     {
       "name": "6. Factor",
@@ -549,7 +549,7 @@
           "associated_datafile": "G Factor.csv"
         }
       ],
-      "debug": false
+      "debug": "false"
     },
     {
       "name": "7. Meta-Analysis",
@@ -565,7 +565,7 @@
           "associated_datafile": "BCG Vaccine.csv"
         }
       ],
-      "debug": false
+      "debug": "false"
     },
     {
       "name": "8. Network Analysis",
@@ -581,7 +581,7 @@
           "associated_datafile": "BFI Network.csv"
         }
       ],
-      "debug": false
+      "debug": "false"
     },
     {
       "name": "9. SEM",
@@ -597,7 +597,7 @@
           "associated_datafile": "Political Democracy.csv"
         }
       ],
-      "debug": false
+      "debug": "false"
     },
     {
       "name": "10. Audit",
@@ -627,7 +627,7 @@
           "associated_datafile": "sinoForest.csv"
         }
       ],
-      "debug": false
+      "debug": "false"
     },
     {
       "name": "11. Machine Learning",
@@ -664,7 +664,7 @@
           "associated_datafile": "wine.csv"
         }
       ],
-      "debug": false
+      "debug": "false"
     },
     {
       "name": "12. Bain",
@@ -715,7 +715,7 @@
           "associated_datafile": "sesame.csv"
         }
       ],
-      "debug": false
+      "debug": "false"
     },
     {
       "name": "13. Discover Distributions",
@@ -760,15 +760,15 @@
           "associated_datafile": "Presidents' Height.csv"
         }
       ],
-      "debug": false
+      "debug": "false"
     },
     {
-      "name": "Debug Dataset (JASP Team, 2017)",
+      "name": "Debug Dataset (JASP Team, 2020)",
       "path": "../debug.csv",
       "description": "For testing. Readme: is.gd/jaspdata",
       "kind": "file",
       "children": ["NULL"],
-      "debug": true
+      "debug": "true"
     }
   ]
 }
