@@ -87,10 +87,9 @@ void DataLibraryFileSystem::loadRootElements()
 		QString path		= file_or_folder["path"].toString(),
 				name		= file_or_folder["name"].toString(),
 				description = file_or_folder["description"].toString(),
-				type		= file_or_folder["kind"].toString(),
-				debug		= file_or_folder["debug"].toString();
+				type		= file_or_folder["kind"].toString();
 #ifndef JASP_DEBUG
-		if (debug.toLower() == "true") continue;		
+		if (file_or_folder["debug"].toBool()) continue;
 #endif	
 		QString associated_datafile = file_or_folder["associated_datafile"].toString();
 		if (isFolder(type))
@@ -160,10 +159,9 @@ void DataLibraryFileSystem::loadFilesAndFolders(const QString &docpath)
 			QString description = file_or_folder["description"].toString();
 			QString type = file_or_folder["kind"].toString();
 			QString associated_datafile = file_or_folder["associated_datafile"].toString();
-			QString debug =  file_or_folder["debug"].toString();
 #ifndef JASP_DEBUG
-			if (debug.toLower() == "true") continue;		
-#endif		
+			if (file_or_folder["debug"].toBool()) continue;
+#endif
 			if (isFolder(type))
 			{
 				path = _path + QDir::separator()  + path;
