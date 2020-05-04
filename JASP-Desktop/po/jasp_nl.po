@@ -16574,6 +16574,22 @@ msgctxt "Description|"
 msgid "Graphically-Based Data Analysis"
 msgstr "Grafisch georiënteerde Data Analyse"
 
+msgctxt "CSV|"
+msgid "Could not access file"
+msgstr "Geen toegang tot bestand"
+
+msgctxt "CSV|"
+msgid "File is empty"
+msgstr "Bestand is leeg"
+
+msgctxt "CSV|"
+msgid "Could not open file"
+msgstr "Kon bestand niet openen"
+
+msgctxt "ActionButtons|"
+msgid "New"
+msgstr "Nieuw"
+
 msgctxt "auditBayesianWorkflow|"
 msgid ""
 msgstr ""

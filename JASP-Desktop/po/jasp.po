@@ -16266,6 +16266,21 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Graphically-Based Data Analysis"
+
+msgctxt "CSV|"
+msgid "Could not access file"
+msgstr ""
+
+msgctxt "CSV|"
+msgid "File is empty"
+msgstr ""
+
+msgctxt "CSV|"
+msgid "Could not open file"
+msgstr ""
+
+msgctxt "ActionButtons|"
+msgid "New"
 msgstr ""
 
 msgctxt "auditBayesianWorkflow|"

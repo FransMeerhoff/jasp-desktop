@@ -20,6 +20,7 @@
 
 #include <QFileInfo>
 #include "utilities/settings.h"
+#include "utilities/appdirs.h"
 #include "gui/messageforwarder.h"
 #include "log.h"
 #include "data/datasetpackage.h"
@@ -77,7 +78,7 @@ void FileMenu::setResourceButtonsVisibleFor(ActionButtons::FileOperation fo)
 	_resourceButtons->setOnlyTheseButtonsVisible(_actionButtons->resourceButtonsForButton(fo));
 }
 
-void FileMenu::setSaveMode(FileEvent::FileMode mode)
+void FileMenu::setFileMode(FileEvent::FileMode mode)
 {
 	_mode = mode;
 
@@ -151,8 +152,46 @@ void FileMenu::close()
 	FileEvent *event = new FileEvent(this, FileEvent::FileClose);
 	dataSetIORequestHandler(event);
 
-	setSaveMode(FileEvent::FileOpen);
-	_actionButtons->setSelectedAction(ActionButtons::FileOperation::Open);
+    setFileMode(FileEvent::FileOpen);
+    _actionButtons->setSelectedAction(ActionButtons::FileOperation::Open);
+}
+
+void FileMenu::newFile()
+{
+
+	FileEvent *event = new FileEvent(this, FileEvent::FileNew);
+	dataSetIORequestHandler(event);
+
+    //Get the Documents location
+    QString docDir = AppDirs::documents();
+
+    //Check existing newly created file
+    int fileNumber = 0;
+    QString baseEmptyFileName = "jasp_created_";
+    QString newFileName = "";
+    do
+    {
+        newFileName = docDir + QDir::separator() +  baseEmptyFileName + QString::number(fileNumber) + ".csv";
+        fileNumber++;
+     }
+    while(QFile::exists(newFileName));
+
+    //Open and create file.
+    QFile file(newFileName);
+    file.open(QIODevice::ReadWrite);
+	QTextStream stream(&file);
+	//stream << ";" << '\n' << ";";
+	file.close();
+
+	_currentDataFile->setCurrentFilePath(newFileName);
+
+	open(newFileName);
+	_currentDataFile->setCurrentFilePath(newFileName);
+
+	//setCurrentDataFile(newFileName)
+	//_watcher.addPath(newFileName);
+	//setDataFileWatcher(true);
+	_mainWindow->startDataEditor(newFileName);
 }
 
 void FileMenu::setCurrentDataFile(const QString &path)
@@ -357,17 +396,21 @@ void FileMenu::actionButtonClicked(const ActionButtons::FileOperation action)
 {	
 	switch (action)
 	{
-	case ActionButtons::FileOperation::Open:				setSaveMode(FileEvent::FileOpen);			break;
-	case ActionButtons::FileOperation::SaveAs:				setSaveMode(FileEvent::FileSave);			break;
-	case ActionButtons::FileOperation::ExportResults:		setSaveMode(FileEvent::FileExportResults);	break;
-	case ActionButtons::FileOperation::ExportData:  		setSaveMode(FileEvent::FileExportData);		break;
-	case ActionButtons::FileOperation::SyncData:			setSaveMode(FileEvent::FileSyncData);		break;
+    case ActionButtons::FileOperation::Open:				setFileMode(FileEvent::FileOpen);			break;
+    case ActionButtons::FileOperation::SaveAs:				setFileMode(FileEvent::FileSave);			break;
+    case ActionButtons::FileOperation::ExportResults:		setFileMode(FileEvent::FileExportResults);	break;
+    case ActionButtons::FileOperation::ExportData:  		setFileMode(FileEvent::FileExportData);		break;
+    case ActionButtons::FileOperation::SyncData:			setFileMode(FileEvent::FileSyncData);		break;
 	case ActionButtons::FileOperation::Save:
 		if (getCurrentFileType() == Utils::FileType::jasp && ! isCurrentFileReadOnly())
 			save();
 		else
-			setSaveMode(FileEvent::FileSave);			
+            setFileMode(FileEvent::FileSave);
 		break;
+
+    case ActionButtons::FileOperation::New:
+        newFile();
+        break;
 
 	case ActionButtons::FileOperation::Close:
 		close();
@@ -424,6 +467,7 @@ bool FileMenu::checkSyncFileExists(const QString &path, bool waitForExistence)
 		Utils::sleep(100);
 	}
 
+	/*
 	if (QFileInfo::exists(path))
 	{
 		int trials = 0;
@@ -440,6 +484,9 @@ bool FileMenu::checkSyncFileExists(const QString &path, bool waitForExistence)
 	}
 	else
 		Log::log() << "Sync file does not exist: " << path.toStdString() << std::endl;
+	*/
+
+	exist = true;
 
 	if (!exist)
 		clearSyncData();

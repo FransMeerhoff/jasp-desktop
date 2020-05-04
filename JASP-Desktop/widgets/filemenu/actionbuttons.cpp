@@ -22,7 +22,8 @@ void ActionButtons::loadButtonData(std::vector<ActionButtons::DataRow> &data)
 	_data =
 	{
 		  {FileOperation::Open,				tr("Open"),				true,	{ResourceButtons::RecentFiles,	ResourceButtons::Computer,	ResourceButtons::DataLibrary, ResourceButtons::OSF }},
-		  {FileOperation::Save,				tr("Save"),				false,	{}																												},
+          {FileOperation::New,				tr("New"),				true,	{}                                                                                                              },
+          {FileOperation::Save,				tr("Save"),				false,	{}																												},
 		  {FileOperation::SaveAs,			tr("Save As"),			false,	{ResourceButtons::Computer, ResourceButtons::OSF }																},
 		  {FileOperation::ExportResults,	tr("Export Results"),	false,	{ResourceButtons::Computer, ResourceButtons::OSF }																},
 		  {FileOperation::ExportData,		tr("Export Data"),		false,	{ResourceButtons::Computer, ResourceButtons::OSF }																},

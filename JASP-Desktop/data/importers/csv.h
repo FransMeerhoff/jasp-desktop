@@ -24,9 +24,13 @@
 #include <stdint.h>
 
 #include <boost/nowide/fstream.hpp>
+#include <QCoreApplication>
+#include "utilities/qutils.h"
 
 class CSV
 {
+    Q_DECLARE_TR_FUNCTIONS(CSV)
+
 public:
 	CSV(const std::string &path);
 

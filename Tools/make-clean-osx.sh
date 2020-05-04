@@ -72,6 +72,10 @@ make -j`sysctl -n hw.ncpu` || exit 1
 #make || exit 1 #multiple processes can fill up memory apparently?
 echo "Compiling finished succesfully!"
 
+
+echo "************ Compile d**********"
+exit 0
+
 echo "Reseting qmake vars"
 $QT_KIT_FULL/bin/qmake -set ENVIRONMENT_CRYPTKEY "" || exit 1
 $QT_KIT_FULL/bin/qmake -set AM_I_BUILDBOT "" || exit 1
