@@ -514,7 +514,7 @@ AnovaRepeatedMeasures <- function(jaspResults, dataset = NULL, options) {
   betweenTable$addColumnInfo(title = gettext("p"),              name = "Pr(>F)",  type = "pvalue")
   
   if (options$VovkSellkeMPR && length(options$betweenSubjectFactors) > 0) {
-    betweenTable$addColumnInfo(title = gettextf("VS-MPR%s", "\u002A"), name = "VovkSellkeMPR", type = "number")
+    betweenTable$addColumnInfo(title = gettext("VS-MPR\u002A"), name = "VovkSellkeMPR", type = "number")
     betweenTable$addFootnote(message = .messages("footnote", "VovkSellkeMPR"), symbol = "\u002A")
   }
   
@@ -590,7 +590,7 @@ AnovaRepeatedMeasures <- function(jaspResults, dataset = NULL, options) {
   anovaTable$addColumnInfo(title = gettext("p"),              name = "p",       type = "pvalue")
   
   if (options$VovkSellkeMPR) {
-    anovaTable$addColumnInfo(title = gettextf("VS-MPR%s", "\u002A"), name = "VovkSellkeMPR", type = "number")
+    anovaTable$addColumnInfo(title = gettext("VS-MPR\u002A"), name = "VovkSellkeMPR", type = "number")
     anovaTable$addFootnote(message = .messages("footnote", "VovkSellkeMPR"), symbol = "\u002A")
   }
   
@@ -704,7 +704,7 @@ AnovaRepeatedMeasures <- function(jaspResults, dataset = NULL, options) {
   rmAnovaLevenesTable$addColumnInfo(name="p", type="pvalue")
   
   if (options$VovkSellkeMPR) {
-    rmAnovaLevenesTable$addColumnInfo(title = "VS-MPR\u002A", name = "VovkSellkeMPR", type = "number")
+    rmAnovaLevenesTable$addColumnInfo(title = gettext("VS-MPR\u002A"), name = "VovkSellkeMPR", type = "number")
     rmAnovaLevenesTable$addFootnote(message = .messages("footnote", "VovkSellkeMPR"), symbol = "\u002A")
   }
   rmAnovaLevenesTable$showSpecifiedColumnsOnly <- TRUE

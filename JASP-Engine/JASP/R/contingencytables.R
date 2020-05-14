@@ -331,7 +331,7 @@ ContingencyTables <- function(jaspResults, dataset, options, ...) {
                                 crossTabKendallTau$addColumnInfo(name = "value[kTauB]",     title = gettext("Kendall's Tau-b "),    type = "number")
                                 crossTabKendallTau$addColumnInfo(name = "statistic[kTauB]", title = gettext("Z"),                   type = "number", format = "dp:3")
                                 crossTabKendallTau$addColumnInfo(name = "p[kTauB]",         title = gettext("p"),                   type = "pvalue")
-    if (options$VovkSellkeMPR)  crossTabKendallTau$addColumnInfo(name = "MPR[kTauB]",       title = gettextf("VS-MPR%s", "\u002A"), type = "number")
+    if (options$VovkSellkeMPR)  crossTabKendallTau$addColumnInfo(name = "MPR[kTauB]",       title = gettext("VS-MPR\u002A"),        type = "number")
 
     analysisContainer[["crossTabKendallTau"]] <- crossTabKendallTau
     analysis                                  <- as.list(analysis)
@@ -405,7 +405,7 @@ ContingencyTables <- function(jaspResults, dataset, options, ...) {
                               table$addColumnInfo(name = paste0("value[", fold, "]"),   title = gettext("Value"),               type = valueFoldType)
                               table$addColumnInfo(name = paste0("df[",    fold, "]"),   title = gettext("df"),                  type = "integer")
                               table$addColumnInfo(name = paste0("p[",     fold, "]"),   title = gettext("p"),                   type = "pvalue")
-  if (options$VovkSellkeMPR)  table$addColumnInfo(name = paste0("MPR[",   fold, "]"),   title = gettextf("VS-MPR%s", "\u002A"), type = "number")
+  if (options$VovkSellkeMPR)  table$addColumnInfo(name = paste0("MPR[",   fold, "]"),   title = gettext("VS-MPR\u002A"),        type = "number")
 }
 
 .crossTabLogOddsAddColInfo <- function(table, fold, ci.label) {

@@ -432,7 +432,7 @@
 }
 
 .reglogisticVovkSellke <- function(table, options) {
-  table$addColumnInfo(name = "vsmpr",   title = gettextf("VS-MPR%s", "\u002A"), type = "number")
+  table$addColumnInfo(name = "vsmpr",   title = gettext("VS-MPR\u002A"), type = "number")
   message <- gettextf("Vovk-Sellke Maximum <em>p</em>-Ratio: Based on the <em>p</em>-value,
   the maximum possible odds in favor of H%1$s over H%2$s equals
   1/(-e <em>p</em> log(<em>p</em>)) for <em>p</em> %3$s .37

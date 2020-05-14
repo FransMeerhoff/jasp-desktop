@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
-"POT-Creation-Date: 2020-05-14 12:01\n"
+"POT-Creation-Date: 2020-05-14 13:10\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "Log odds ratio < 0"
 msgstr ""
 
-msgid "Log odds ratio %s 0"
+msgid "Log odds ratio ≠ 0"
 msgstr ""
 
 msgid "Descriptives"
@@ -109,7 +109,7 @@ msgstr ""
 msgid "p"
 msgstr ""
 
-msgid "VS-MPR%s"
+msgid "VS-MPR*"
 msgstr ""
 
 msgid "Type I Sum of Squares"
