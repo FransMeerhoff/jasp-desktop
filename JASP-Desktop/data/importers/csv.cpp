@@ -19,7 +19,6 @@
 
 #include <boost/algorithm/string.hpp>
 
-
 #include <cstring>
 #include <stdexcept>
 
@@ -45,12 +44,12 @@ void CSV::open()
 	_fileSize = Utils::getFileSize(_path);
 
 	if (_fileSize < 0)
-		throw runtime_error("Could not access file");
+        throw runtime_error(fq(tr("Could not access file")));
 
 	if (_fileSize == 0)
 	{
 		_status = Empty;
-		throw runtime_error("File is empty");
+		//throw runtime_error(fq(tr("File is empty")));
 	}
 
 	_rawBufferStartPos = 0;
@@ -63,7 +62,7 @@ void CSV::open()
 	if ( ! _stream.is_open())
 	{
 		_status = Empty;
-		throw runtime_error("Could not open file");
+        throw runtime_error(fq(tr("Could not open file")));
 	}
 
 	if (readRaw())

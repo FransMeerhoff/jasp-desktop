@@ -29,7 +29,7 @@ class FileEvent : public QObject
 	Q_OBJECT
 
 public:
-	enum FileMode { FileSave, FileOpen, FileExportResults, FileExportData, FileGenerateData, FileSyncData, FileClose };
+    enum FileMode { FileSave, FileOpen, FileNew, FileExportResults, FileExportData, FileGenerateData, FileSyncData, FileClose };
 
 					FileEvent(QObject *parent = nullptr, FileMode fileMode = FileEvent::FileOpen);
 					FileEvent(const FileEvent&) = default;

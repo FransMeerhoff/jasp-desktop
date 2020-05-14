@@ -74,7 +74,7 @@ public:
 	void			setCurrentDataFile(const QString &path);
 	void			setDataFileWatcher(bool watch);
 	
-	void			setSaveMode(FileEvent::FileMode mode);
+    void			setFileMode(FileEvent::FileMode mode);
 	Utils::FileType getCurrentFileType()	const { return _currentFileType; }
 	QString			getCurrentFilePath()	const { return _currentFilePath; }
 	QString			getDefaultOutFileName();
@@ -119,6 +119,7 @@ public slots:
     void analysesExportResults();
 	void refresh();
 	void close();
+    void newFile();
 
 private slots:
 	void dataSetIORequestHandler(FileEvent *event);
