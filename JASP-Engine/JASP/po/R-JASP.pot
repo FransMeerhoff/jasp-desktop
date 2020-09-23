@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
-"POT-Creation-Date: 2020-09-15 15:58\n"
+"POT-Creation-Date: 2020-09-23 14:55\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -167,6 +167,12 @@ msgid "%s %i"
 msgstr ""
 
 msgid "Please remove duplicates from the %s names."
+msgstr ""
+
+msgid "Incorrect arguments for the inverse cumulative density function"
+msgstr ""
+
+msgid "The HDI is discontinuous but allowSplit = FALSE;\n    the result is a valid CrI but not HDI."
 msgstr ""
 
 msgid "%1$s %2$s Plots"
@@ -616,7 +622,7 @@ msgstr ""
 msgid "Model fit is singular. Specified random effects parameters (random intercepts and random slopes) cannot be estimated from the available data. Carefully reduce the random effects structure, but this practice might inflate the reported p-value, and invalidates the analysis."
 msgstr ""
 
-msgid "Vovk-Sellke Maximum <em>p</em>-Ratio: Based on a two-sided <em>p</em>-value, the maximum possible odds in favor of H%1$s over H%2$s equals 1/(-e <em>p</em> log(<em>p</em>)) for <em>p</em> %3$s .37 (Sellke, Bayarri, & Berger, 2001)."
+msgid "Vovk-Sellke Maximum <em>p</em>-Ratio: Based on a two-sided <em>p</em>-value, the maximum possible odds in favor of H₁ over H₀ equals 1/(-e <em>p</em> log(<em>p</em>)) for <em>p</em> ≤ .37 (Sellke, Bayarri, & Berger, 2001)."
 msgstr ""
 
 msgid "Numerical problems with the maximum-likelihood estimate (e.g., gradients too large). This may indicate that the specified random effects parameters (random intercepts and random slopes) cannot be estimated from the available data. Consider carefully reducing the random effects structure, but be aware this may induce unknown risks of anti-conservative results (i.e., p-values might be lower than nominal)."
