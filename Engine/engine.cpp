@@ -901,6 +901,7 @@ void Engine::absorbSettings(const Json::Value & jsonRequest)
 	_langR				= jsonRequest.get("languageCode",		_langR			).asString();
 
 	rbridge_setLANG(_langR);
+	Log::log() << "-------- Set Lang -------- : " << _langR << std::endl;
 }
 
 

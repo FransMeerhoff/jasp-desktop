@@ -178,6 +178,8 @@ void PreferencesModel::setNumDecimals(int newNumDecimals)
 {
 	if (numDecimals() == newNumDecimals)
 		return;
+	
+	LanguageModel::lang()->changeLanguage(newNumDecimals);
 
 	Settings::setValue(Settings::NUM_DECIMALS, newNumDecimals);
 

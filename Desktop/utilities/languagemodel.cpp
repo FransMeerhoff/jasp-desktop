@@ -45,6 +45,7 @@ LanguageModel::LanguageModel(QApplication *app, QQmlApplicationEngine *qml, QObj
 
 	_singleton = this;
 	_qmlocation = tq(Dirs::resourcesDir()) + "Translations";
+	_suffixChar = '-';
 
 	initialize();
 }
@@ -161,17 +162,19 @@ void LanguageModel::resultsPageLoaded()
 
 QString LanguageModel::getLocalName(QLocale::Language cl) const
 {
+	QString ret = _languagesInfo[cl].localName;
 	return _languagesInfo[cl].localName;
 }
 
 QString LanguageModel::getNativeLanguaName(QLocale::Language cl) const
 {
+	QString ret = _languagesInfo[cl].nativeLanguageName;
 	return _languagesInfo[cl].nativeLanguageName;
 }
 
 QString  LanguageModel::getLocalNameFromQmFileName(QString filename) const
 {
-	int		start		= filename.indexOf('_');
+	int		start		= filename.indexOf(_suffixChar);
 	QString localname	= filename.mid(start + 1);
 	int		end			= localname.lastIndexOf('.');
 
@@ -230,7 +233,7 @@ void LanguageModel::loadModuleTranslationFile(Modules::DynamicModule *dyn)
 	bool newfileloaded = false;
 
 	//Get qm folder as subfolder from qml folder
-	QString qmFolder = QString::fromStdString(dyn->qmlFilePath("")) + "qm";
+	QString qmFolder = QString::fromStdString(dyn->qmlFilePath("")) + "translations";
 
 	QDirIterator qdi(qmFolder, QStringList() << "*.qm" << "*.QM");
 
@@ -299,7 +302,7 @@ void LanguageModel::findQmFiles(QString qmlocation)
 
 		QString localname = getLocalNameFromQmFileName(fi.fileName());
 
-		//Can QLocale be found from localname suffix e.g. _nl?
+		//Can QLocale be found from localname suffix e.g. *-nl?
 		if (!isValidLocalName(fi.fileName(), loc))
 		{
 			Log::log() << "Invalid translation file found with name: " << fi.fileName().toStdString()  << std::endl ;
